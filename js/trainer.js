@@ -1,3 +1,5 @@
+// workout-trainer.js
+
 const canvas = document.getElementById("renderCanvas");
 const engine = new BABYLON.Engine(canvas, true);
 
@@ -40,11 +42,10 @@ const createScene = async function () {
         autoplay: true
     });
 
-    // Load the trainer models with their animations
+    // ✅ Updated model filenames to avoid special characters and spaces
     const pushup = await BABYLON.SceneLoader.ImportMeshAsync("", "./meshes/", "Medea_Push_Up.gltf", scene);
-const squat = await BABYLON.SceneLoader.ImportMeshAsync("", "./meshes/", "Medea_Squat.gltf", scene);
-const jumping = await BABYLON.SceneLoader.ImportMeshAsync("", "./meshes/", "Medea_Jumping_Jacks.gltf", scene);
-
+    const squat = await BABYLON.SceneLoader.ImportMeshAsync("", "./meshes/", "Medea_Squat.gltf", scene);
+    const jumping = await BABYLON.SceneLoader.ImportMeshAsync("", "./meshes/", "Medea_Jumping_Jacks.gltf", scene);
 
     const allTrainers = [pushup, squat, jumping];
     const trainerPositions = [new BABYLON.Vector3(0, 0, 0), new BABYLON.Vector3(0, 0, 0), new BABYLON.Vector3(0, 0, 0)];
@@ -61,7 +62,7 @@ const jumping = await BABYLON.SceneLoader.ImportMeshAsync("", "./meshes/", "Mede
     allTrainers[currentIndex].meshes[0].setEnabled(true);
     allTrainers[currentIndex].animationGroups[0].start(true);
 
-    // Create UI buttons
+    // UI Buttons
     const advancedTexture = BABYLON.GUI.AdvancedDynamicTexture.CreateFullscreenUI("UI");
 
     function createButton(name, text, x, onClick) {
